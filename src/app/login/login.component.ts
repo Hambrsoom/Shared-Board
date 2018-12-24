@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loginUserData = {}
   constructor() { }
 
   ngOnInit() {
   }
 
+  loginUser() {
+    console.log(this.loginUserData)//ONLY for testing purposes -- this is where you call  backend api
+  }
 }
