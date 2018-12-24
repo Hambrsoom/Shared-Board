@@ -11,14 +11,13 @@ import {AuthService} from "./auth.service";
 import {EventService} from "./event.service";
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    EventsComponent,
-    SpecialEventsComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

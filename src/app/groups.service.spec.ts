@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventService } from './event.service';
+import { GroupsService } from './groups.service';
 
-describe('EventService', () => {
+describe('GroupsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: EventService = TestBed.get(EventService);
+    const service: GroupsService = TestBed.get(GroupsService);
     expect(service).toBeTruthy();
   });
 });
