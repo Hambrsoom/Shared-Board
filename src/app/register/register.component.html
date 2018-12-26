@@ -7,18 +7,23 @@
        <div class = "card-body">
          <form class = "form">
            <div class = "form-group">
-             <label>Enter your e-mail:
-               <input [(ngModel)] = "registerUserData.email" name = "email" type = "email" class = "form-control rounded-0" required/>
+             <label>Email
+               <input [(ngModel)] = "registerUserData.email" name = "email" placeholder="Email" type = "email" class = "form-control rounded-0" required/>
              </label>
            </div>
            <div class = "form-group">
+<<<<<<< HEAD
            <label for = "">Enter your username:
                <input [(ngModel)] = "registerUserData.username" name = "username" type = "text" class = "form-control rounded-0" required/>
+=======
+           <label>Username
+               <input [(ngModel)] = "registerUserData.username" name = "username" placeholder="Username" type = "text" class = "form-control rounded-0" required/>
+>>>>>>> 690a5d44eba41791ade571844d868e4147b5c93e
              </label>
            </div>
            <div class = "form-group">
-           <label>Enter your password:
-               <input [(ngModel)] = "registerUserData.password" name = "password" type = "password"  class = "form-control rounded-0" required/>
+           <label>Password
+               <input [(ngModel)] = "registerUserData.password" name = "password" placeholder="Password" type = "password"  class = "form-control rounded-0" required/>
              </label>
            </div>
           <button  (click) = "registerUser()" type = "button" class = "btn btn-primary float-right">Register!</button>

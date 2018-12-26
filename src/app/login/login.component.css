@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   background-image: url("https://wallpapercave.com/wp/dwwIVzJ.jpg");
   position: relative;
@@ -6,4 +7,28 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   padding:150px
+=======
+body{
+  background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  padding:10px;
+}
+
+.forgot a {
+  color: #2366d1;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.register a {
+  color: #2366d1;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.loginbutton{
+  padding-top: 10px;
+>>>>>>> 690a5d44eba41791ade571844d868e4147b5c93e
 }

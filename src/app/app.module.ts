@@ -10,7 +10,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
+<<<<<<< HEAD
 import { GroupsService } from './groups.service';
+=======
+>>>>>>> 690a5d44eba41791ade571844d868e4147b5c93e
 
 @NgModule({
   declarations: [
