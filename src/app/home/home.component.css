@@ -1,0 +1,42 @@
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.shareboard-header {
+  height: 50vh;
+  min-height: 300px;
+  color: #aaa;
+  /*background-image: url("titlebg.jpg");*/
+  background-color: #222;
+  background-image: url('http://www.dynamo.com.uy/wp-content/uploads/2017/12/plexus-fantasy-abstract-technology-and-engineering-background-with-original-organic-motion_eqy4lpzde__F0012.png');
+  object-fit: scale-down;
+  font-family: 'Raleway', sans-serif;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -o-background-size: cover;
+}
+/*.txt-rotate{*/
+  /*font-family: 'Raleway', sans-serif;*/
+  /*padding: 1em 2em;*/
+  /*font-size: 18px;*/
+  /*background: #222;*/
+  /*color: #aaa*/
+/*}*/
+.card {
+  height: 100%;
+}
+
+h1 {
+  font-weight: 200;
+  margin: 0.4em 0;
+  font-size: 3.5em;
+}
+
