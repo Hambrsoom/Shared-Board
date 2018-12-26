@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-
-@Injectable({
-  providedIn: 'root'
-})
+import { HttpClient } from '@angular/common/http';
+@Injectable()
 export class GroupsService {
 
-  private _groupsUrl = "http://localhost:3001/api/events"
+  private _groupsUrl = "http://localhost:3001/api/home";
   constructor(private http: HttpClient) { }
-
-  //method for groups
-
-
+  getGroups() {
+    return this.http.get<any>(this._groupsUrl);
+  }
 }

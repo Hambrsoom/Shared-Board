@@ -9,12 +9,15 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import { GroupsComponent } from './groups/groups.component';
+import { HomeComponent } from './home/home.component';
+import { GroupsService } from './groups.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import { GroupsComponent } from './groups/groups.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, GroupsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

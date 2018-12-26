@@ -13,7 +13,10 @@ mongoose.connect(db, err => {
     console.log('Connected to mongodb')
   }
 })
+
+
 router.get('/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
     res.send("From API route")
 })
 
@@ -75,6 +78,7 @@ router.post('/create', (req, res) => {
 
 //retrieving all the groups from the db:
 
+
 router.get('/home', (req, res) => {
   Group.find({}, function(err,gr) {
     if (err) {
@@ -82,6 +86,7 @@ router.get('/home', (req, res) => {
     }
     else {
       console.log('retrieved list of groups')
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).send(gr)
     }
   })
