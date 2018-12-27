@@ -79,7 +79,7 @@ router.post('/create', (req, res) => {
 //retrieving all the groups from the db:
 
 
-router.get('/home', (req, res) => {
+router.get('/home-page', (req, res) => {
   Group.find({}, function(err,gr) {
     if (err) {
       console.log(err)
