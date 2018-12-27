@@ -1,5 +1,33 @@
+<link /> 
 <body>
-<div class="row pt-5">
+ <div class="container">
+  <div class="row">
+    <div class="col-md-10 offset=md-1">
+      <div class="row">
+        <div class="col-md-5 register-left">
+          <div class="title">
+          <h3>Register</h3>
+          </div>
+          <div class="register-form">
+            <div class="form-group">
+              <input [(ngModel)]="registerUserData.email" name="email" placeholder="Email" type="email" class="form-control rounded-0" required />
+            </div>
+            <div class="form-group">
+              <input [(ngModel)]="registerUserData.username" name="username" placeholder="Username" type="text" class="form-control rounded-0" required />
+            </div>
+            <div class="form-group">
+              <input [(ngModel)]="registerUserData.password" name="password" placeholder="Password" type="password" class="form-control rounded-0" required />
+            </div>
+            <div>
+              <button (click)="registerUser()" type="button" class="btn btn-primary float-right">Register</button>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+ </div>
+<!--<div class="row pt-5">
   <div class = "col-md06 mx-auto">
      <div class = "card rouded-0">
        <div class = "card-header">
@@ -22,10 +50,10 @@
                <input [(ngModel)] = "registerUserData.password" name = "password" placeholder="Password" type = "password"  class = "form-control rounded-0" required/>
              </label>
            </div>
-          <button  (click) = "registerUser()" type = "button" class = "btn btn-primary float-right">Register!</button>
+          <button  (click) = "registerUser()" type = "button" class = "btn btn-primary float-right">Register</button>
          </form>
        </div>
      </div>
   </div>
-</div>
+</div>-->
 </body>
