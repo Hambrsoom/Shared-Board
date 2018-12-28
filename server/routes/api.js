@@ -4,18 +4,6 @@ const mongoose = require('mongoose')
 const User     = require('../modules/user')
 const Group    = require('../modules/groups')
 const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
-const nodemailer = require('nodemailer')
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'hostlocal4200@gmail.com',
-    pass: 'Localhost4200**'
-  }
-});
-//For the twilio phone number
-const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
-const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
-const client = require('twilio')(accountSid, authToken);
 
 mongoose.connect(db, err => {
   if (err) {
@@ -42,8 +30,9 @@ router.post('/register', (req, res) => {
       console.log(error)
     }
     else {
-    //  res.setHeader('Access-Control-Allow-Origin', '*');
-      res.status(200).send(registeredUser)
+      let payload = { subject: registeredUser._id }
+      let token   = jwt.sign(payload,"secret")
+      res.status(200).send({ token })
     }
   })
 })
@@ -68,7 +57,9 @@ router.post('/login', (req, res) => {
           res.status(401).send('Inavalid password')
         }
         else {
-          res.status(200).send(user)
+          let payload = { subject: user._id }
+          let token = jwt.sign(payload,"secret")
+          res.status(200).send({ token })
         }
       }
     }

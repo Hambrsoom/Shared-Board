@@ -12,8 +12,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
 import { HomePageComponent } from './home-page/home-page.component';
-import {ForgotpasswordComponent} from "./forgotpassword/forgotpassword.component";
-import {RequestPasswordService} from "./request-password.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,7 @@ import {RequestPasswordService} from "./request-password.service";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, GroupsService, RequestPasswordService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
