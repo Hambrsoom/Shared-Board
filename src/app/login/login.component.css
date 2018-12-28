@@ -1,11 +1,71 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
 body {
   background-image: url("https://wallpapercave.com/wp/dwwIVzJ.jpg");
-  position: relative;
-  opacity: 0.65;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.90;
+  z-index: -1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding:140px;
+  padding:350px;
+}
+.login {
+  background-color:rgba(0,0,0,0.8);
+  border-radius: 10px;
+  width: 280px;
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  color: white;
+  padding: 40px;
+}
+.login h1{
+    float:left;
+    font-size:40px;
+    border-bottom: 6px solid #00ff21;
+    margin-bottom:15px;
+    padding: 6px 0;
+}
+.box {
+  width:100%;
+  overflow:hidden;
+  font-size:20px;
+  padding:8px 0;
+  margin: 8px 0;
+}
+.box i{
+  width:26px;
+  float:left;
+  text-align:center;
+}
+.box input {
+    width: 300px;
+    padding: 18px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #435160;
+    outline: none;
+    color: white;
+    font-size: 16px;
+}
+.box input:focus {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+}
+.loginbutton {
+  width:100%;
+  border:none;
+  padding-top: 10px;
 }
 @media (min-width: 1200px) {
 }
@@ -14,19 +74,14 @@ body {
   }
 
 
-.forgot a {
+.forgot a, .register a {
   color: #2366d1;
   font-size: 12px;
   text-decoration: underline;
 }
-
-
-.register a {
-  color: #2366d1;
-  font-size: 12px;
-  text-decoration: underline;
+a:hover{
+  background-color: white;
 }
 
-.loginbutton{
-  padding-top: 10px;
-}
+
+

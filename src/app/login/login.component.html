@@ -1,7 +1,30 @@
-<div class="koko">
+<body>
+  <div class="login">
+    <h1>Login</h1>
+
+    <div class="box">
+      <div class="form-group">
+        <input [(ngModel)]="loginUserData.email"  name="userORemail" placeholder="Email" type="text" class="form-control rounded-0" required />
+      </div>
+    </div>
+    <div class="box">
+      <div class="form-group">
+        <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Password" class="form-control rounded-0" required />
+      </div>
+    </div>
+    <div class="forgot">
+      <a href="reset.html">Forgot password?</a>
+    </div>
+    <div class="register">
+      <a class="link" routerLink="/register" routerLinkActive="active">Don't have an account? Register here!</a>
+    </div>
+    <button (click)="loginUser()" type="button" class="btn btn-success float-right">Login</button>
+
+  </div>
+<!--<div class="koko">
   <div class="row pt-5">
     <div class="col-md06 mx-auto">
-      <div class="card rounded-0">
+      <div class="card rouded-0">
         <div class="card-header">
           <h3 class="mb-0">Login</h3>
         </div>
@@ -19,13 +42,8 @@
                 <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder = "Password" class="form-control rounded-0" required />
               </label>
             </div>
-            <div class="form-group">
-              <label>
-                <input data-ng-click="rememberMe()" data-ng-model="remember" name="remember" type="checkbox">Remember Me
-              </label>
-            </div>
             <div class="forgot">
-              <a class="link" routerLink="/forgotpassword" routerLinkActive="active">Forgot password?</a>
+              <a href="reset.html">Forgot password?</a>
             </div>
             <div class = "register">
               <a class="link" routerLink="/register" routerLinkActive="active">Don't have an account? Register here!</a>
@@ -36,4 +54,5 @@
       </div>
      </div>
    </div>
-</div>
+</div>-->
+</body>
