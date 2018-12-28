@@ -3,7 +3,21 @@ const router   = express.Router()
 const mongoose = require('mongoose')
 const User     = require('../modules/user')
 const Group    = require('../modules/groups')
-const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+const db = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+const jwt = require('jsonwebtoken');
+
+const nodemailer = require('nodemailer')
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'hostlocal4200@gmail.com',
+    pass: 'Localhost4200**'
+  }
+});
+//For the twilio phone number
+const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
+const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
+const client = require('twilio')(accountSid, authToken);
 
 mongoose.connect(db, err => {
   if (err) {
@@ -13,6 +27,7 @@ mongoose.connect(db, err => {
     console.log('Connected to mongodb')
   }
 })
+
 
 
 router.get('/', (req, res) => {

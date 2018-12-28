@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +11,10 @@ import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { RequestPasswordService } from "./request-password.service";
+import { ForgotpasswordComponent } from "./forgotpassword/forgotpassword.component";
+import { AuthGuard } from './auth.guard';
+import { ShowHidePasswordModule } from "ngx-show-hide-password";
 
 @NgModule({
   declarations: [
@@ -26,9 +29,10 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShowHidePasswordModule.forRoot()
   ],
-
+  providers: [AuthService, AuthGuard, GroupsService, RequestPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
