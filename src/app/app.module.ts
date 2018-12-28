@@ -12,14 +12,15 @@ import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AuthGuard } from './auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    HomePageComponent
+    HomePageComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, GroupsService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

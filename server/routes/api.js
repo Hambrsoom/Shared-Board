@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const User     = require('../modules/user')
 const Group    = require('../modules/groups')
 const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
-const jwt      = require('jsonwebtoken');
+
 mongoose.connect(db, err => {
   if (err) {
     console.error('ERROR! ' + err)
@@ -136,8 +136,54 @@ router.get('/me', (req, res) => {
         res.render("groups/index", { groups: allgroups, noMatch: noMatch })
       }
     })
-    
+
   }
 })
 
 module.exports = router
+
+//Sending password
+router.put('/forgotpassword', function (req, res) {
+  User.findOne({email: req.body.email}).select().exec(function (err, user) {
+      if (err)
+        console.log(err);
+      else {
+        if (!user)
+          res.status(401).send('Invalid user email');
+        else if (!user.active)
+          res.status(401).send('Account not activated yet');
+        else {
+          //For the email
+          var mailOptions = {
+            from: 'hostlocal4200@gmail.com',
+            to: email,
+            subject: 'Password Request',
+            text: 'Hi! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
+            'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+          //For the number
+          client.messages
+            .create({
+              body: 'Hi! You recently requested a retrieval of your password from our website.' +
+              'The password associated with this account is :' + user.password + '.\nRegards,\nThe team.',
+              from: '+15146127252',//Registered phone number always ise this one
+              to: '+15558675310'//Need user phone number update in the form and db
+            })
+            .then(message => console.log(message.sid))
+            .done()
+
+
+          res.status(200).send('Please check you email for reset link');
+        }
+      }
+    }
+  )
+});
+

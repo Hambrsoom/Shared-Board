@@ -5,14 +5,13 @@ import { HomeComponent } from "./home/home.component";
 import { RegisterComponent } from "./register/register.component";
 //import { GroupsComponent } from "./groups/groups.component";
 import { HomePageComponent } from "./home-page/home-page.component";
-import { AuthGuard } from './auth.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: "full" },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'home-page', component: HomePageComponent, canActivate: [AuthGuard]},
 
 ]
 
