@@ -14,6 +14,7 @@ import { GroupsService } from './groups.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import {ForgotpasswordComponent} from "./forgotpassword/forgotpassword.component";
 import {RequestPasswordService} from "./request-password.service";
+import {ShowHidePasswordModule} from "ngx-show-hide-password";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {RequestPasswordService} from "./request-password.service";
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShowHidePasswordModule.forRoot()
   ],
   providers: [AuthService, GroupsService, RequestPasswordService],
   bootstrap: [AppComponent]
