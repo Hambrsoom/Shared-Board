@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../auth.service";
+import { AuthService } from "../auth.service";
+
 
 @Component({
   selector: 'app-register',
@@ -7,21 +8,24 @@ import {AuthService} from "../auth.service";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerUserData = {}
+  registerUserData = {};
   constructor(private _auth: AuthService) { }
 
   ngOnInit() {
   }
 
+ 
   registerUser() {
-    //talk to the back-end here
-    //console.log(this.registerUserData)//for testing purposes only!
-    this._auth.registerUser(this.registerUserData).subscribe(
-      res =>console.log(res),
+    this._auth.registerUser(this.registerUserData)
+      .subscribe(
+      res => console.log(res),
       err => console.log(err)
-    )
-
+      )
   }
+  refresh() {
+    window.location.reload();
+  }
+
 
 
 }

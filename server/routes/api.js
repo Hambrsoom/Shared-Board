@@ -16,7 +16,7 @@ mongoose.connect(db, err => {
 
 
 router.get('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  //res.setHeader('Access-Control-Allow-Origin', '*');
     res.send("From API route")
 })
 
@@ -30,6 +30,7 @@ router.post('/register', (req, res) => {
       console.log(error)
     }
     else {
+    //  res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).send(registeredUser)
     }
   })
@@ -71,6 +72,7 @@ router.post('/create', (req, res) => {
       console.log(err)
     }
     else {
+      //res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).send(savedGroup)
     }
   })
@@ -86,7 +88,7 @@ router.get('/home-page', (req, res) => {
     }
     else {
       console.log('retrieved list of groups')
-      res.setHeader('Access-Control-Allow-Origin', '*');
+     // res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).send(gr)
     }
   })
