@@ -7,7 +7,7 @@ import {RequestPasswordService} from "../request-password.service";
   styleUrls: ['./forgotpassword.component.css']
 })
 export class ForgotpasswordComponent implements OnInit {
-  UserData = {}
+  UserData = {};
   constructor(private _pass : RequestPasswordService) { }
 
   ngOnInit() {
