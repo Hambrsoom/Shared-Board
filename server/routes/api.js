@@ -1,9 +1,11 @@
-const express  = require('express')
-const router   = express.Router()
+const express = require('express')
+const router = express.Router()
 const mongoose = require('mongoose')
-const User     = require('../modules/user')
-const Group    = require('../modules/groups')
-const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+const User = require('../modules/user')
+const Group = require('../modules/groups')
+const db = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+
+
 
 mongoose.connect(db, err => {
   if (err) {
@@ -17,7 +19,7 @@ mongoose.connect(db, err => {
 
 router.get('/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send("From API route")
+  res.send("From API route")
 })
 
 //post requist:
@@ -39,8 +41,8 @@ router.post('/login', (req, res) => {
   let userData = req.body
   User.findOne({
     $or: [
-      { email: userData.email },
-      { username: userData.username }
+      {email: userData.email},
+      {username: userData.username}
     ]
   }, (error, user) => {
     if (error) {
@@ -59,7 +61,7 @@ router.post('/login', (req, res) => {
         }
       }
     }
-})
+  })
 })
 
 //Creating new Group in the db
@@ -80,7 +82,7 @@ router.post('/create', (req, res) => {
 
 
 router.get('/home', (req, res) => {
-  Group.find({}, function(err,gr) {
+  Group.find({}, function (err, gr) {
     if (err) {
       console.log(err)
     }
@@ -95,7 +97,7 @@ router.get('/home', (req, res) => {
 //retrieving a specific group from the db:
 router.get('/home/search', (req, res) => {
   let groupData = req.body
-  Group.find({ name: groupData.name }, (error, group) => {
+  Group.find({name: groupData.name}, (error, group) => {
     if (error) {
       console.log(error)
     }
@@ -118,7 +120,7 @@ function escapeRegex(text) {
 router.get('/me', (req, res) => {
   if (req.query.search) {
     const regex = new RegExp(escapeRegex(req.query.search), 'gi')
-    Group.find({ name: regex }, (err, allgroups) => {
+    Group.find({name: regex}, (err, allgroups) => {
       if (err) {
         console.log(err)
       }
@@ -128,11 +130,39 @@ router.get('/me', (req, res) => {
           noMatch = "No match"
 
         }
-        res.render("groups/index", { groups: allgroups, noMatch: noMatch })
+        res.render("groups/index", {groups: allgroups, noMatch: noMatch})
       }
     })
-    
+
   }
 })
 
 module.exports = router
+
+
+//Resetting password
+router.put('/forgotpassword', function (req, res) {
+  User.findOne({email: req.body.email}).select('username email').exec(function (err, user) {
+      if (err)
+        console.log(err);
+      else {
+        if (!user)
+          res.status(401).send('Invalid user email');
+        else if (!user.active)
+          res.status(401).send('Account not activated yet');
+        else {
+          var email = {
+            from: 'localhost staff, staff@gmail.com',
+            to: user.email,
+            subject: 'Request Reset Password Link',
+            text: 'Hello ' + user.username + ', you recently made a request to reset your password.' +
+            'Please click the following link to reset your password: http://localhost:4200/newpassword/',
+            html: 'Hello ' + user.username + ', you recently made a request to reset your password.' +
+            'Please click the following link to reset your password: <a>http://localhost:4200/newpassword/</a>'
+          };
+          res.status(200).send('Please check you email for reset link');
+        }
+      }
+    }
+  )
+});

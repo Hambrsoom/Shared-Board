@@ -8,15 +8,20 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./auth.service";
-import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { NewpasswordComponent } from './newpassword/newpassword.component';
+import { ResetPasswordService } from "./reset-password.service";
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ForgotpasswordComponent,
+    NewpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,7 @@ import { GroupsService } from './groups.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, GroupsService],
+  providers: [AuthService, GroupsService, ResetPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

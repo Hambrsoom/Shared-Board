@@ -11,6 +11,12 @@ export class LoginComponent implements OnInit {
   constructor(private _auth: AuthService) { }
 
   ngOnInit() {
+    /***For the remember me***/
+
+
+
+    /***                  ***/
+
   }
 
   loginUser() {
