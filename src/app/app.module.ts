@@ -12,6 +12,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, GroupsService],
+  providers: [AuthService, AuthGuard, GroupsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

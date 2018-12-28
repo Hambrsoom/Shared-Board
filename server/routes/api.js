@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const User     = require('../modules/user')
 const Group    = require('../modules/groups')
 const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
-
+const jwt      = require('jsonwebtoken');
 mongoose.connect(db, err => {
   if (err) {
     console.error('ERROR! ' + err)
@@ -30,8 +30,9 @@ router.post('/register', (req, res) => {
       console.log(error)
     }
     else {
-    //  res.setHeader('Access-Control-Allow-Origin', '*');
-      res.status(200).send(registeredUser)
+      let payload = { subject: registeredUser._id }
+      let token   = jwt.sign(payload,"secret")
+      res.status(200).send({ token })
     }
   })
 })
@@ -56,7 +57,9 @@ router.post('/login', (req, res) => {
           res.status(401).send('Inavalid password')
         }
         else {
-          res.status(200).send(user)
+          let payload = { subject: user._id }
+          let token = jwt.sign(payload,"secret")
+          res.status(200).send({ token })
         }
       }
     }
