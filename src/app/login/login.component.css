@@ -2,8 +2,15 @@
 
 body {
   background-image: url("https://wallpapercave.com/wp/dwwIVzJ.jpg");
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
   opacity: 0.90;
+  z-index: -1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,8 +21,8 @@ body {
   border-radius: 10px;
   width: 280px;
   position: absolute;
-  top: 25%;
-  left: 50%;
+  top: 15%;
+  left: 60%;
   color: white;
   padding: 40px;
 }
@@ -67,17 +74,14 @@ body {
   }
 
 
-.forgot a {
+.forgot a, .register a {
   color: #2366d1;
   font-size: 12px;
   text-decoration: underline;
 }
-
-
-.register a {
-  color: #2366d1;
-  font-size: 12px;
-  text-decoration: underline;
+a:hover{
+  background-color: white;
 }
+
 
 
