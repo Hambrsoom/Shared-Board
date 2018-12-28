@@ -11,8 +11,7 @@ import {AuthService} from "./auth.service";
 import { HomeComponent } from './home/home.component';
 import { GroupsService } from './groups.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { NewpasswordComponent } from './newpassword/newpassword.component';
-import { ResetPasswordService } from "./reset-password.service";
+import {RequestPasswordService} from "./request-password.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { ResetPasswordService } from "./reset-password.service";
     RegisterComponent,
     HomeComponent,
     ForgotpasswordComponent,
-    NewpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { ResetPasswordService } from "./reset-password.service";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, GroupsService, ResetPasswordService],
+  providers: [AuthService, GroupsService, RequestPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

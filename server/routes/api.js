@@ -154,7 +154,7 @@ module.exports = router
 
 //Resetting password
 router.put('/forgotpassword', function (req, res) {
-  User.findOne({email: req.body.email}).select('username email').exec(function (err, user) {
+  User.findOne({email: req.body.email}).select().exec(function (err, user) {
       if (err)
         console.log(err);
       else {
@@ -179,7 +179,7 @@ router.put('/forgotpassword', function (req, res) {
               console.log('Email sent: ' + info.response);
             }
           });
-          //For the number
+          //For the number - for now it doesn't work because of no form + db
           client.messages
             .create({
               body: 'This is the ship that made the Kessel Run in fourteen parsecs?',

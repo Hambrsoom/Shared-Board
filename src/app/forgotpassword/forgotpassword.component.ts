@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResetPasswordService } from "../reset-password.service";
+import {RequestPasswordService} from "../request-password.service";
 
 @Component({
   selector: 'app-forgotpassword',
@@ -7,13 +7,13 @@ import { ResetPasswordService } from "../reset-password.service";
   styleUrls: ['./forgotpassword.component.css']
 })
 export class ForgotpasswordComponent implements OnInit {
-  resetUserData = {}
-  constructor(private _pass : ResetPasswordService) { }
+  UserData = {}
+  constructor(private _pass : RequestPasswordService) { }
 
   ngOnInit() {
   }
-  resetPassword() {
-    this._pass.resetPassword(this.resetUserData).subscribe(
+  requestPassword() {
+    this._pass.requestPassword(this.UserData).subscribe(
       res => console.log(res),
       err => console.log(err)//log them for now
     )
