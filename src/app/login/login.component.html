@@ -3,12 +3,14 @@
     <h1>Login</h1>
 
     <div class="box">
- 
-      <input [(ngModel)]="loginUserData.userORemail" name="userORemail" placeholder="Username/Email" type="text" class="form-control rounded-0" required />
+      <div class="form-group">
+        <input [(ngModel)]="loginUserData.email"  name="userORemail" placeholder="Email" type="text" class="form-control rounded-0" required />
+      </div>
     </div>
     <div class="box">
-  
-      <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Password" class="form-control rounded-0" required />
+      <div class="form-group">
+        <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Password" class="form-control rounded-0" required />
+      </div>
     </div>
     <div class="forgot">
       <a href="reset.html">Forgot password?</a>
