@@ -19,11 +19,8 @@
               <input [(ngModel)]="registerUserData.phonenumber" name="phonenumber" placeholder="Phone Number" type="tel" class="form-control rounded-0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
             </div>
             <div class="form-group">
-              <show-hide-password size="" icon="far fa-eye" btnStyle="secondary" [btnOutline]="false">
-                <input [(ngModel)]="registerUserData.password" name="password" placeholder="Password" type="password"
-                       class="form-control rounded-0" required/>
-              </show-hide-password>
-             </div>
+              <input [(ngModel)]="registerUserData.password" name="password" placeholder="Password" type="password" class="form-control rounded-0" required />
+            </div>
             <div>
               <button (click)="registerUser()" type="button" class="btn btn-success float-right">Register</button>
             </div>
