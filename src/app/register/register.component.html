@@ -1,31 +1,25 @@
-<link/>
+<link />
 <body>
-<div class="container">
+ <div class="container">
   <div class="row">
     <div class="col-md-10 offset=md-1">
       <div class="row">
         <div class="col-md-5 register-left">
           <div class="title">
-            <h3>Register</h3>
+          <h3>Register</h3>
           </div>
           <div class="register-form">
             <div class="form-group">
-              <input [(ngModel)]="registerUserData.email" name="email" placeholder="Email" type="email"
-                     class="form-control rounded-0" required/>
+              <input [(ngModel)]="registerUserData.email" name="email" placeholder="Email" type="email" class="form-control rounded-0" required />
             </div>
             <div class="form-group">
-              <input [(ngModel)]="registerUserData.username" name="username" placeholder="Username" type="text"
-                     class="form-control rounded-0" required/>
+              <input [(ngModel)]="registerUserData.username" name="username" placeholder="Username" type="text" class="form-control rounded-0" required />
             </div>
             <div class="form-group">
-              <input [(ngModel)]="registerUserData.phonenumber" name="phonenumber" placeholder="Phone Number" type="tel"
-                     class="form-control rounded-0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
+              <input [(ngModel)]="registerUserData.phonenumber" name="phonenumber" placeholder="Phone Number" type="tel" class="form-control rounded-0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
             </div>
             <div class="form-group">
-              <show-hide-password size="xs" icon="far fa-eye" btnStyle="success" [btnOutline]="false">
-                <input [(ngModel)]="registerUserData.password" name="password" placeholder="Password" type="password"
-                       class="form-control rounded-0" required/>
-              </show-hide-password>
+              <input [(ngModel)]="registerUserData.password" name="password" placeholder="Password" type="password" class="form-control rounded-0" required />
             </div>
             <div>
               <button (click)="registerUser()" type="button" class="btn btn-success float-right">Register</button>
@@ -33,7 +27,7 @@
           </div>
         </div>
       </div>
+     </div>
     </div>
-  </div>
-</div>
+ </div>
 </body>

@@ -16,4 +16,7 @@ export class AuthService {
   loginUser(user){//user is an object that should be username OR email
     return this.http.post<any>(this._loginUrl, user)
   }
+  loggedIn() {
+    return localStorage.getItem('token')
+  }
 }

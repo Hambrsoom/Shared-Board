@@ -3,7 +3,9 @@ const router   = express.Router()
 const mongoose = require('mongoose')
 const User     = require('../modules/user')
 const Group    = require('../modules/groups')
-const db       = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+const db = "mongodb://Hambrsoom:SharedBoard123!@ds042138.mlab.com:42138/sharedboard"
+const jwt = require('jsonwebtoken');
+
 const nodemailer = require('nodemailer')
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -12,10 +14,10 @@ const transporter = nodemailer.createTransport({
     pass: 'Localhost4200**'
   }
 });
-//For the twilio phone number
-const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
-const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
-const client = require('twilio')(accountSid, authToken);
+// //For the twilio phone number
+// const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
+// const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
+// const client = require('twilio')(accountSid, authToken);
 
 mongoose.connect(db, err => {
   if (err) {
@@ -25,6 +27,7 @@ mongoose.connect(db, err => {
     console.log('Connected to mongodb')
   }
 })
+
 
 
 router.get('/', (req, res) => {
@@ -42,8 +45,9 @@ router.post('/register', (req, res) => {
       console.log(error)
     }
     else {
-    //  res.setHeader('Access-Control-Allow-Origin', '*');
-      res.status(200).send(registeredUser)
+      let payload = { subject: registeredUser._id }
+      let token   = jwt.sign(payload,"secret")
+      res.status(200).send({ token })
     }
   })
 })
@@ -68,7 +72,9 @@ router.post('/login', (req, res) => {
           res.status(401).send('Inavalid password')
         }
         else {
-          res.status(200).send(user)
+          let payload = { subject: user._id }
+          let token = jwt.sign(payload,"secret")
+          res.status(200).send({ token })
         }
       }
     }
@@ -152,48 +158,49 @@ router.get('/me', (req, res) => {
 module.exports = router
 
 //Sending password
-router.post('/forgotpassword', (req, res) => {
-  let userData = req.body
-  User.findOne({
-    email: userData.email
-  }, (error, user) => {
-    if (error) {
-      console.log(error)
-    }
-    else {
-      if (!user) {
-        res.status(401).send('Invalid user email')
-      }
+router.put('/forgotpassword', function (req, res) {
+  User.findOne({email: req.body.email}).select().exec(function (err, user) {
+      if (err)
+        console.log(err);
       else {
-        //For the email
-        let mailOptions = {
-          from: 'hostlocal4200@gmail.com',
-          to: email,
-          subject: 'Password Request',
-          text: 'Hi! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
-          'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.'
-        };
-        transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Email sent: ' + info.response);
-          }
-        });
-        //For the number
-        client.messages
-          .create({
-            body: 'Hi! You recently requested a retrieval of your password from our website.' +
-            'The password associated with this account is :' + user.password + '.\nRegards,\nThe team.',
-            from: '+15146127252',//Registered phone number always ise this one
-            to: '+15145625778'//Need user phone number update in the form and db
-          })
-          .then(message => console.log(message.sid))
-          .done()
+        if (!user)
+          res.status(401).send('Invalid user email');
+        // else if (!user.active)
+        //   res.status(401).send('Account not activated yet');
+        else {
+          //For the email
+          var mailOptions = {
+            from: 'hostlocal4200@gmail.com',
+            to: user.email,
+            subject: 'Password Request',
+            text: 'Hi '+ user.username + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
+            'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.',
+            html: 'Hi ' + '<strong>'+ user.username + '</strong>' + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
+            'The password associated with this account is: <strong>' + user.password + '</strong>.\nRegards,\nThe Team.'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+          // //For the number
+          // client.messages
+          //   .create({
+          //     body: 'Hi! You recently requested a retrieval of your password from our website.' +
+          //     'The password associated with this account is :' + 1 + '.\nRegards,\nThe team.',
+          //     from: '+15146127252',//Registered phone number always ise this one
+          //     to: '+15558675310'//Need user phone number update in the form and db
+          //   })
+          //   .then(message => console.log(message.sid))
+          //   .done()
 
 
-        res.status(200).send('Please check you email for reset link');
+          res.status(200).send('Please check you email for reset link' + user.email + ' ' + user.password);
+        }
       }
     }
-  })
+  )
 });
+
