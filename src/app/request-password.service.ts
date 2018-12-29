@@ -10,6 +10,6 @@ export class RequestPasswordService {
   constructor( private http: HttpClient) { }
 
   requestPassword(user){
-    return this.http.post<any>(this._requestPasswordUrl, user)
+    return this.http.put(this._requestPasswordUrl, user, {responseType : 'text',})
   }
 }

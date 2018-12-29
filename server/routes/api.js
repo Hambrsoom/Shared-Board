@@ -14,10 +14,10 @@ const transporter = nodemailer.createTransport({
     pass: 'Localhost4200**'
   }
 });
-//For the twilio phone number
-const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
-const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
-const client = require('twilio')(accountSid, authToken);
+// //For the twilio phone number
+// const accountSid = 'AC14388c36df0c62457756fd0c12897e72';
+// const authToken = '0529b8411773ebf84b8dcadad70e7f5d';
+// const client = require('twilio')(accountSid, authToken);
 
 mongoose.connect(db, err => {
   if (err) {
@@ -165,16 +165,18 @@ router.put('/forgotpassword', function (req, res) {
       else {
         if (!user)
           res.status(401).send('Invalid user email');
-        else if (!user.active)
-          res.status(401).send('Account not activated yet');
+        // else if (!user.active)
+        //   res.status(401).send('Account not activated yet');
         else {
           //For the email
           var mailOptions = {
             from: 'hostlocal4200@gmail.com',
-            to: email,
+            to: user.email,
             subject: 'Password Request',
-            text: 'Hi! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
-            'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.'
+            text: 'Hi '+ user.username + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
+            'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.',
+            html: 'Hi ' + '<strong>'+ user.username + '</strong>' + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
+            'The password associated with this account is: <strong>' + user.password + '</strong>.\nRegards,\nThe Team.'
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
@@ -183,19 +185,19 @@ router.put('/forgotpassword', function (req, res) {
               console.log('Email sent: ' + info.response);
             }
           });
-          //For the number
-          client.messages
-            .create({
-              body: 'Hi! You recently requested a retrieval of your password from our website.' +
-              'The password associated with this account is :' + user.password + '.\nRegards,\nThe team.',
-              from: '+15146127252',//Registered phone number always ise this one
-              to: '+15558675310'//Need user phone number update in the form and db
-            })
-            .then(message => console.log(message.sid))
-            .done()
+          // //For the number
+          // client.messages
+          //   .create({
+          //     body: 'Hi! You recently requested a retrieval of your password from our website.' +
+          //     'The password associated with this account is :' + 1 + '.\nRegards,\nThe team.',
+          //     from: '+15146127252',//Registered phone number always ise this one
+          //     to: '+15558675310'//Need user phone number update in the form and db
+          //   })
+          //   .then(message => console.log(message.sid))
+          //   .done()
 
 
-          res.status(200).send('Please check you email for reset link');
+          res.status(200).send('Please check you email for reset link' + user.email + ' ' + user.password);
         }
       }
     }
