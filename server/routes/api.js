@@ -176,7 +176,7 @@ router.put('/forgotpassword', function (req, res) {
             text: 'Hi '+ user.username + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
             'The password associated with this account is: ' + user.password + '.\nRegards,\nThe Team.',
             html: 'Hi ' + '<strong>'+ user.username + '</strong>' + '! You recently requested a retrieval of your password from our website. We\'re happy to help.' +
-            'The password associated with this account is: <strong>' + user.password + '</strong>.\nRegards,\nThe Team.'
+            'The password associated with this account is: <strong>' + user.password + '</strong>.<br>Regards,<br>The Team.'
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
